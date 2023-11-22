@@ -54,6 +54,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "book_directory.urls"
 
+SWAGGER_SETTINGS = {"USE_SESSION_AUTH": False}
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -130,7 +132,6 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
 
 
 LOGGING = {

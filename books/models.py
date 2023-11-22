@@ -8,6 +8,7 @@ from django.urls import reverse
 from accounts.models import Activity
 
 from django.contrib.auth import get_user_model
+
 User = get_user_model()
 
 

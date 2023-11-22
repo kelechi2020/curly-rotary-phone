@@ -4,6 +4,7 @@ from books.models import Book
 
 
 class BookSerializer(serializers.ModelSerializer):
+    author = serializers.CharField(source="author.first_name")
 
     class Meta:
         model = Book
