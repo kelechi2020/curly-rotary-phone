@@ -1,24 +1,26 @@
-# Project Readme: Simple Book Service
-
+# Project Readme:  Book listing Service
 ## Overview
 
 The Simple Book Service is a Django-based web application designed to provide a platform for users to browse, favorite, and manage books. 
+
 ## Key Features
 
 - **Book Listing:** Displays a list of books with titles linking to their detail pages.
 - **Book Detail View:** Shows detailed information about a book, including title, author, and description.
 - **User Authentication:** Utilizes Django's built-in authentication system for user login.
 - **Favorite System:** Allows authenticated users to mark books as favorites and view them on a separate page.
-- **REST API:** Includes a RESTful API endpoint for accessing book information.
+- **REST API:** Includes a RESTful API endpoint for searching book information based on various filter
 - **Admin Interface:** Leverages Django's admin capabilities for book management.
 
+
 A step-by-step series of examples that tell you how to get a development environment running.
+
 
 1. **Clone the Repository**
 
     ```bash
     git clone https://github.com/netboxlabs-recruitment/takehome-swe-django-kelechi2020
-    cd colibrihr
+    cd takehome-swe-django-kelechi2020
     ```
 
 
@@ -71,8 +73,9 @@ A step-by-step series of examples that tell you how to get a development environ
 
  Swagger documentation can be accessed at:
  ```
- http://localhost:8079/
+ http://localhost:8079/api
  ```
+
 
 ## Usage
 
@@ -82,7 +85,6 @@ A step-by-step series of examples that tell you how to get a development environ
 - **Admin Panel:** Accessible at `/admin` for managing books and users.
 
 ## ###  Project Improvement roadmap (Things I would do if I had more time)
-
 
 1. **User Registration:** Implement a user registration system to allow new users to sign up.
 2. **Advanced Book Search:** Add a feature for advanced searching and filtering of books based on different criteria.
