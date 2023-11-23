@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load book_extras %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h1>Book Titles</h1>
+    <ul class="list-group">
+        {% for book in book_list %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href="{% url 'book-detail' book.id %}">{{ book.title }}</a>
+                {% if request.user.is_authenticated %}
+<button class="favorite-btn btn btn-link"
+        data-book-id="{{ book.id }}"
+        data-favorite-url="{% url 'toggle-favorite' book.id %}"
+        style="color: #007bff; background-color: #f8f9fa; border-color: #007bff; padding: 5px 10px; border-radius: 5px; text-decoration: none;">
+    {{ book|is_favorite:request.user|yesno:"My Favorite,Favorite" }}
+</button>
+                {% endif %}
+            </li>
+        {% empty %}
+            <li class="list-group-item">No books available.</li>
+        {% endfor %}
+    </ul>
+
+    <script>
+document.querySelectorAll('.favorite-btn').forEach(function(button) {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        var bookId = this.getAttribute('data-book-id');
+        var favoriteUrl = this.getAttribute('data-favorite-url');
+
+        fetch(favoriteUrl, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken'),
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 'book_id': bookId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            this.textContent = data.is_favorite ? "My Favorite" : "Favorite";
+        })
+        .catch(error => console.error('Error:', error));
+    });
+});
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+    </script>
+{% endblock %}

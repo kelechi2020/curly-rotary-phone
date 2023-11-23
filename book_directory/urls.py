@@ -19,6 +19,7 @@ from django.urls import path, include
 from drf_yasg import openapi
 from rest_framework import routers, permissions
 from drf_yasg.views import get_schema_view
+from django.contrib.auth import views as auth_views
 
 from books.views import BookViewSet
 
@@ -41,11 +42,14 @@ schema_view = get_schema_view(
 
 
 urlpatterns = [
+    path("login", auth_views.LoginView.as_view(), name="login"),
+    path("logout", auth_views.LogoutView.as_view(), name="logout"),
     path("api/v1/", include(router.urls)),
     path(
-        "",
+        "api",
         schema_view.with_ui("swagger", cache_timeout=0),
         name="schema-swagger-ui",
     ),
     path("admin/", admin.site.urls),
+    path("", include("books.urls")),
 ]

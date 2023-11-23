@@ -1,44 +1,104 @@
-# Django Takehome
+# Project Readme: Simple Book Service
 
-## **Simple Book Service**
+## Overview
 
-Create a book list website in Python using Django. It can be very simple and look plain or be as fancy as you like, however **graphical design is not a grading consideration.** 
+The Simple Book Service is a Django-based web application designed to provide a platform for users to browse, favorite, and manage books. 
+## Key Features
 
-Use **best practices**, pay **attention to detail** and write **clean, testable code.** We wish to understand your experience with Python, Django, and general software engineering practices. You can pull in any Python libraries that you need (make sure to include them in the requirements.txt). You should include a simple README in the source directory with instructions and any notes.
+- **Book Listing:** Displays a list of books with titles linking to their detail pages.
+- **Book Detail View:** Shows detailed information about a book, including title, author, and description.
+- **User Authentication:** Utilizes Django's built-in authentication system for user login.
+- **Favorite System:** Allows authenticated users to mark books as favorites and view them on a separate page.
+- **REST API:** Includes a RESTful API endpoint for accessing book information.
+- **Admin Interface:** Leverages Django's admin capabilities for book management.
 
-**The target time to complete the exercise is 1-3 hours**, but as it is not a “live” exercise there is no time limit and you may spend as much time as you wish. It is better to focus on a few well-functioning pages than to work on many half-working pages. 
+A step-by-step series of examples that tell you how to get a development environment running.
 
-When in doubt about implementation specifics, you are free to make your own reasonable project choices based on the details below. **Be ready to discuss design decisions** and ways to extend the project in further interviews.
+1. **Clone the Repository**
 
-Please work within the provided Github private repo in a new branch. **Upon completion**, signal to us via opening a new PR from your branch to main. Email a link to the PR to careers@netboxlabs.com
+    ```bash
+    git clone https://github.com/netboxlabs-recruitment/takehome-swe-django-kelechi2020
+    cd colibrihr
+    ```
 
-**Details**
 
-- Create a new Django app, use SQLite as the database
-- Login for users can be handled by the regular Django admin login
-- Screens can be plain HTML or you can use any UI framework that you like
-- Try to make the code **DRY** and **keep database calls to a minimum**
+2. **Build and Run with Docker**
 
-**Database**
+    Use Docker Compose to build and run the application:
 
-- Use SQLite.
-- Create a books model with a **title**, **description** and **author** (link to the user model)
-- Create the model such that users can mark one or more books as their favorites
+    ```bash
+    docker-compose up --build
+    ```
 
-**Home Page**
+   This command will build the Docker image for this project and start the containers defined in your `docker-compose.yml` file.
 
-- On the home page (open to everyone even if not logged in) show a list of book titles where the title links to a detail page for the book
 
-**Book Detail Page**
+3. **Apply migrations**
+   
+   ```bash
+   docker-compose exec web python manage.py migrate
+   ```
+   
+4. **Create root user**
+   
+   ```bash
+   docker-compose exec web python manage.py createsuperuser --email [email] --username [username]
+   ```
 
-- The detail page of the book should show the title, author and description
-- Have an **edit button** on the page where staff users can go to change the book information including title, author and description
-- Have a **“Favorite” button** that will mark the book as one of the users favorites
+5. **Create come books**
 
-**Favorites Page**
+   ```
+   Please visit "http://localhost:8079/addmin", login with superuser and create some books record.
+   
+   Then visit "/" to view and interact with records
+   ```
 
-- At the top of all pages have a **“Favorites” link** which will go to a page showing the logged-in user all their books that they marked as favorites
+6. **Running Tests**
+   
+   ```bash
+   
+   docker-compose exec web python manage.py test
+   ```
 
-**Optional but encouraged**
+7. **Accessing the Application**
 
-- Create a REST API endpoint to get a list of the books and book details
+    Once the containers are up and running, you can access the application at:
+
+    ```
+    http://localhost:8079/
+    ```
+## API Documentation and playground
+
+ Swagger documentation can be accessed at:
+ ```
+ http://localhost:8079/
+ ```
+
+## Usage
+
+- **Home Page:** Accessible to all users, showing a list of book titles.
+- **Book Detail Page:** Click on a book title to view its details. Staff users can edit book information.
+- **Favorites Page:** Logged-in users can view their favorite books.
+- **Admin Panel:** Accessible at `/admin` for managing books and users.
+
+## ###  Project Improvement roadmap (Things I would do if I had more time)
+
+
+1. **User Registration:** Implement a user registration system to allow new users to sign up.
+2. **Advanced Book Search:** Add a feature for advanced searching and filtering of books based on different criteria.
+3. **User Profiles:** Create user profiles where users can manage their information and view their activity.
+4. **Book Ratings and Reviews:** Allow users to rate and review books, and display these on the book detail pages.
+5. **Responsive Design:** Enhance the frontend with a responsive design to improve usability on various devices.
+6. **Social Media Integration:** Add features for sharing books on social media platforms.
+7. **Recommendation Engine:** Implement a recommendation system to suggest books based on user preferences and history.
+8. **Internationalization:** Add support for multiple languages to cater to a global audience.
+9. **Performance Optimization:** Optimize backend queries and implement caching for improved performance.
+10. **Comprehensive Testing:** Expand the test suite to cover more scenarios and edge cases for robustness.
+
+
+
+
+
+
+
+- 

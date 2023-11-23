@@ -39,7 +39,7 @@ class Book(AuditTrail):
 
     def get_absolute_url(self):
         """Returns the url to access a particular genre instance."""
-        return reverse("book_detail", args=[str(self.id)])
+        return reverse("book-detail", args=[str(self.id)])
 
     class Meta:
         ordering = ("title",)

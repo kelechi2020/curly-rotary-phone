@@ -16,7 +16,7 @@ class User(AbstractUser):
 
 class Activity(models.Model):
     """
-    Generic mode
+    Generic model for tracking object level activities
     """
 
     FAVORITE = "F"
@@ -31,6 +31,7 @@ class Activity(models.Model):
     content_object = GenericForeignKey()
 
     class Meta:
+        unique_together = ["user", "object_id"]
         indexes = [
             models.Index(fields=["content_type", "object_id"]),
         ]

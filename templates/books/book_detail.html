@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block content %}
+    <h1>{{ book.title }}</h1>
+    <p><strong>Author:</strong> {{ book.author.get_full_name }}</p>
+    <p>{{ book.description }}</p>
+
+    {% if user.is_staff %}
+        <a href="{% url 'book-update' book.id %}" class="btn btn-primary">Edit</a>
+    {% endif %}
+
+{% endblock %}
